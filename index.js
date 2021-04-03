@@ -12,60 +12,49 @@
 // Which is then also added into the block
 // This block is then added into the chain
 
+const QRCode = require('qrcode');
+const { Block, Chain } = require('./Blockchain.js');
 // Option to import a seeded number generator or to use default Math.Random
 // const rand = require('./utilities/default_rng.js');
 const rand = require('./utilities/seeded_rng.js');
-
-const SHA256 = require('crypto-js/sha256');
 
 // Create the 12 - 16 character alphanumeric string
 const alphaNumString12_16 = () => {
 	const MIN_LEN = 12;
 	const MAX_LEN = 16;
-	return rand.randString(rand.randBetween(MIN_LEN, MAX_LEN), '#aA');
+	return rand.randString(rand.randNumBetween(MIN_LEN, MAX_LEN), '#aA');
 };
 
-class Block {
-	constructor(randString, timestamp, company, previousHash = '') {
-		this.randString = randString;
-		this.timestamp = timestamp;
-		this.company = company;
-		this.previousHash = previousHash;
-		this.hash = this.createHash();
-	}
-	createHash() {
-		return SHA256(
-			this.randString + this.timestamp + this.company + this.previousHash
-		).toString();
-	}
-}
-
-class Chain {
-	constructor() {
-		this.chain = [this.startGenesisBlock()];
-	}
-	startGenesisBlock() {
-		return new Block('GENESIS', '0', 'GENESIS');
-	}
-	get lastBlock() {
-		return this.chain[this.chain.length - 1];
-	}
-	addBlock(newBlock) {
-		newBlock.previousHash = this.lastBlock.hash;
-		newBlock.hash = newBlock.createHash();
-		this.chain.push(newBlock);
-		return newBlock.hash;
-	}
-}
-
+// Create a parking pass for the given company
 const createParkingPass = (company) => {
 	const randString = alphaNumString12_16();
 	const timestamp = Date.now();
 	return parkChain.addBlock(new Block(randString, timestamp, company));
 };
 
+// Initialize the chain and print out to view the genesis block
 const parkChain = new Chain();
 console.log(JSON.stringify(parkChain, null, 2));
 
+// Create a parking pass for the company 'ParkHub'
 console.log(createParkingPass('ParkHub'));
 console.log(JSON.stringify(parkChain, null, 2));
+
+// Test code for creating QR codes from hash of parking pass
+// const generateQR = async (text) => {
+// 	try {
+// 		console.log(await QRCode.toString(text, { type: 'terminal' }));
+// 	} catch (err) {
+// 		console.error(err);
+// 	}
+// };
+const generateQR = async (text) => {
+	try {
+		await QRCode.toFile('./testqr.png', text);
+	} catch (err) {
+		console.error(err);
+	}
+};
+
+generateQR(createParkingPass('ParkHub'));
+console.log(parkChain.lastBlock);

@@ -18,6 +18,7 @@
 	"homepage": "https://github.com/gregflores/park-chain#readme",
 	"dependencies": {
 		"crypto-js": "^4.0.0",
+		"qrcode": "^1.4.4",
 		"seedrandom": "^3.0.5"
 	}
 }

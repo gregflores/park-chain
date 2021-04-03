@@ -26,9 +26,9 @@ const randString = (len, chars) => {
 };
 
 // Generate random number in range inclusive
-const randBetween = (min, max) => {
+const randNumBetween = (min, max) => {
 	return Math.floor(prng() * (max - min + 1) + min);
 };
 
-exports.randBetween = randBetween;
+exports.randNumBetween = randNumBetween;
 exports.randString = randString;
