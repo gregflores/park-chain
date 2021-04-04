@@ -1,5 +1,12 @@
 # Park Chain
 
+## Installing, Running, Testing
+
+-   clone repo with: git clone https://github.com/gregflores/park-chain.git
+-   install with command : npm install
+-   run with command: npm start
+-   test with command: npm test
+
 ## Welcome to the wonderful world of parking and blockchain
 
 Simple script for creating a parking pass and incorporating it into blockchain.
