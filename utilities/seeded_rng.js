@@ -1,10 +1,11 @@
 const seedrandom = require('seedrandom');
-
+require('dotenv').config();
 // Random string and number generators using seedrandom created by davidbau
 // https://github.com/davidbau/seedrandom
 
 const seed = process.env.SEED;
 // Create a seeded random number generator
+console.log(seed);
 const prng = seedrandom(seed);
 
 // Generate random string of given length

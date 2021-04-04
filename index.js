@@ -32,13 +32,13 @@ const createParkingPass = (company) => {
 	return parkChain.addBlock(new Block(randString, timestamp, company));
 };
 
-// Initialize the chain and print out to view the genesis block
+// Initialize the chain
 const parkChain = new Chain();
-console.log(JSON.stringify(parkChain, null, 2));
+// console.log(JSON.stringify(parkChain, null, 2));
 
 // Create a parking pass for the company 'ParkHub'
-console.log(createParkingPass('ParkHub'));
-console.log(JSON.stringify(parkChain, null, 2));
+createParkingPass('ParkHub');
+// console.log(JSON.stringify(parkChain, null, 2));
 
 // Test code for creating QR codes from hash of parking pass
 // const generateQR = async (text) => {
@@ -57,4 +57,5 @@ const generateQR = async (text) => {
 };
 
 generateQR(createParkingPass('ParkHub'));
-console.log(parkChain.lastBlock.hash);
+// console.log(parkChain.lastBlock.hash);
+console.log(JSON.stringify(parkChain, null, 2));
