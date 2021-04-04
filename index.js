@@ -58,4 +58,13 @@ const generateQR = async (text) => {
 
 generateQR(createParkingPass('ParkHub'));
 // console.log(parkChain.lastBlock.hash);
+
+createParkingPass('ParkHub');
+createParkingPass('ParkHub');
+createParkingPass('ParkHub');
+createParkingPass('ParkHub');
+createParkingPass('ParkHub');
+createParkingPass('ParkHub');
+createParkingPass('ParkHub');
+createParkingPass('ParkHub');
 console.log(JSON.stringify(parkChain, null, 2));
