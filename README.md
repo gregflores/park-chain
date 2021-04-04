@@ -50,6 +50,6 @@ Possible combinations
 -   '#A' - only numbers and uppercase letters
 -   '#aA' - all three options available
 
-The main issue I see with this implementation (other than some type checking) is that there is not an equal chance of each type of character. 26 upper, 26 lower, and 10 numbers. The numbers have about 1/3 the chance to be chosen as either of the letter types. One solution would be to make the masks for the characters be 130 characters long to match lengths for all types.
+The main issue I see with this implementation (other than some type checking) is that there is not an equal chance of each type of character. 26 upper, 26 lower, and 10 numbers. The numbers have about 1/3 the chance to be chosen as either of the letter types. One solution would be to make the masks for each character type be 130 characters long to match lengths for all types.
 
 To then make the 12-16 character length string, the function alphaNumString12_16 is made so that a random string is created with a length given by random number between 12 and 16 inclusive.

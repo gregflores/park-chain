@@ -57,4 +57,4 @@ const generateQR = async (text) => {
 };
 
 generateQR(createParkingPass('ParkHub'));
-console.log(parkChain.lastBlock);
+console.log(parkChain.lastBlock.hash);

@@ -3,9 +3,9 @@ const seedrandom = require('seedrandom');
 // Random string and number generators using seedrandom created by davidbau
 // https://github.com/davidbau/seedrandom
 
-const SEED = 'testSeed';
+const seed = process.env.SEED;
 // Create a seeded random number generator
-const prng = seedrandom(SEED);
+const prng = seedrandom(seed);
 
 // Generate random string of given length
 // using a choice of alphanumeric characters
