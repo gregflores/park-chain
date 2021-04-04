@@ -1,17 +1,3 @@
-// Make a barcode
-// Barcode will be a hashed string
-// Hashed string contains the following
-// - Generate pseudo random 12-16 character alphanumeric string
-// - timestamp
-// - Company name
-// - Previous Hash value
-// The hashed string will then be appended to a blockchain
-
-// My approach follows the typical "Basic" blockchain implementation.
-// All data is added into the block, then a hash is created of the data
-// Which is then also added into the block
-// This block is then added into the chain
-
 const QRCode = require('qrcode');
 const { Block, Chain } = require('./Blockchain.js');
 // Option to import a seeded number generator or to use default Math.Random
@@ -32,22 +18,7 @@ const createParkingPass = (company) => {
 	return parkChain.addBlock(new Block(randString, timestamp, company));
 };
 
-// Initialize the chain
-const parkChain = new Chain();
-// console.log(JSON.stringify(parkChain, null, 2));
-
-// Create a parking pass for the company 'ParkHub'
-createParkingPass('ParkHub');
-// console.log(JSON.stringify(parkChain, null, 2));
-
 // Test code for creating QR codes from hash of parking pass
-// const generateQR = async (text) => {
-// 	try {
-// 		console.log(await QRCode.toString(text, { type: 'terminal' }));
-// 	} catch (err) {
-// 		console.error(err);
-// 	}
-// };
 const generateQR = async (text) => {
 	try {
 		await QRCode.toFile('./testqr.png', text);
@@ -56,9 +27,13 @@ const generateQR = async (text) => {
 	}
 };
 
-generateQR(createParkingPass('ParkHub'));
-// console.log(parkChain.lastBlock.hash);
+// Initialize the chain
+const parkChain = new Chain();
 
+// Create a parking pass for the company 'ParkHub'
+createParkingPass('ParkHub');
+
+generateQR(createParkingPass('ParkHub'));
 createParkingPass('ParkHub');
 createParkingPass('ParkHub');
 createParkingPass('ParkHub');
